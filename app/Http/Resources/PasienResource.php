@@ -27,6 +27,7 @@ class PasienResource extends JsonResource
             'nama' => $this->nama,
             'jenis_kelamin' => $this->jenis_kelamin,
             'tgl_lahir' => $this->tgl_lahir,
+            'alamat' => $this->alamat,
             'umur' => $umur,
         ];
     }
