@@ -12,6 +12,67 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+
+    /**
+     * @OA\Post(
+     *     path="/login",
+     *     tags={"Projects"},
+     *     summary="Login API",
+     *     description="Login to get Access Token API",
+     *     operationId="login",
+     *     @OA\Parameter(
+     *          name="email",
+     *          description="email address",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          name="password",
+     *          description="password",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *       @OA\Response(
+     *           response="200",
+     *           description="Ok",
+     *           @OA\JsonContent
+     *           (example={
+     *               "meta": {
+     *                     "code":200,
+     *                     "status": "success",
+     *                     "message": "Authenticated"
+     *                },
+     *               "data": {
+     *                      "acces_token": "01|xxxxACCESSTOKEN",
+     *                      "token_type": "Bearer",
+     *                       "user": {
+     *                              "id":1,
+     *                              "name": "Dr Hendra",
+     *                              "email": "drhendra@gmail.com",
+     *                              "role": "dokter",
+     *                      }
+     *                }
+     *          }),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+
+
+
     public function login(Request $request)
     {
         $request->validate([
@@ -48,6 +109,36 @@ class AuthController extends Controller
             new UserResource($user),
         ], 'Success!');
     }
+
+    /**
+     * @OA\Post(
+     *     path="/logout",
+     *     tags={"Projects"},
+     *     summary="Logout API",
+     *     description="Logout to remove acces token API",
+     *     operationId="logout",
+     *       @OA\Response(
+     *           response="200",
+     *           description="Ok",
+     *           @OA\JsonContent
+     *           (example={
+     *               "message": "Authenticated"
+     *          }),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *     @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
 
     public function logout(Request $request)
     {

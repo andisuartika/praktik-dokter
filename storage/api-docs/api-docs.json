@@ -1,0 +1,503 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API SI Praktik Dokter",
+        "description": "API ini digunakan untuk aplikasi SI Praktik Dokter",
+        "contact": {
+            "email": "pt.andisuartika@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://project.test/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Login API",
+                "description": "Login to get Access Token API",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "meta": {
+                                        "code": 200,
+                                        "status": "success",
+                                        "message": "Authenticated"
+                                    },
+                                    "data": {
+                                        "acces_token": "01|xxxxACCESSTOKEN",
+                                        "token_type": "Bearer",
+                                        "user": {
+                                            "id": 1,
+                                            "name": "Dr Hendra",
+                                            "email": "drhendra@gmail.com",
+                                            "role": "dokter"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Logout API",
+                "description": "Logout to remove acces token API",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Authenticated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/store-pasien": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store Pasien API",
+                "description": "Return Pasien Data",
+                "operationId": "store-pasien",
+                "parameters": [
+                    {
+                        "name": "nama",
+                        "in": "query",
+                        "description": "Nama Pasien",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "jenis_kelamin",
+                        "in": "query",
+                        "description": "Jenis Kelamin",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tgl_lahir",
+                        "in": "query",
+                        "description": "Tanggal Lahir",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "alamat",
+                        "in": "query",
+                        "description": "Alamat",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "meta": {
+                                        "code": 200,
+                                        "status": "success",
+                                        "message": "Pasien Berhasil ditambahkan!"
+                                    },
+                                    "data": {
+                                        "id": 1,
+                                        "name": "Andi Suartika",
+                                        "email": "andisuartika@gmail.com",
+                                        "role": "dokter"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/store-periksa": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store Hasil Pemeriksaan API",
+                "description": "Return Periksa Data",
+                "operationId": "store-periksa",
+                "parameters": [
+                    {
+                        "name": "pasien_id",
+                        "in": "query",
+                        "description": "Id Pasien",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "keluhan",
+                        "in": "query",
+                        "description": "Keluhan",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tekanan_darah",
+                        "in": "query",
+                        "description": "Tekanan Darah",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nadi",
+                        "in": "query",
+                        "description": "Nadi",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "rr",
+                        "in": "query",
+                        "description": "Respitory Rate",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "suhu",
+                        "in": "query",
+                        "description": "Suhu",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fisik",
+                        "in": "query",
+                        "description": "Hasil Pemeriksaan Fisik",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "diagnosis",
+                        "in": "query",
+                        "description": "Diagnosis",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tata_laksana",
+                        "in": "query",
+                        "description": "Tata Laksana",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "rujuk",
+                        "in": "query",
+                        "description": "Rujuk",
+                        "required": true,
+                        "schema": {
+                            "type": "bool"
+                        }
+                    },
+                    {
+                        "name": "tempat",
+                        "in": "query",
+                        "description": "Tempat Rujuk",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keterangan",
+                        "in": "query",
+                        "description": "Keterangan Rujuk",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "tarif",
+                        "in": "query",
+                        "description": "Tarif",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "meta": {
+                                        "code": 200,
+                                        "status": "success",
+                                        "message": "Hasil Pemeriksaaan Berhasil ditambahkan!"
+                                    },
+                                    "data": {
+                                        "dokter_id": 1,
+                                        "tanggal": "2023-11-08T11:13:56.803217Z",
+                                        "pasien_id": 2,
+                                        "keluhan": "Flu",
+                                        "tekanan_darah": "120/80 mmHg",
+                                        "nadi": "75/menit",
+                                        "rr": "13/menit",
+                                        "suhu": "35",
+                                        "fisik": "Tingi Badan 150cm. Berat Badan 50Kg",
+                                        "diagnosis": "Flu Ringan",
+                                        "tata_laksana": "Obat Flu",
+                                        "rujuk": 1,
+                                        "tarif": 100000,
+                                        "updated_at": "2023-11-08T11:13:56.000000Z",
+                                        "created_at": "2023-11-08T11:13:56.000000Z",
+                                        "id": 29
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/get-pasien?nama={nama-pasien}": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get Data Pasien API",
+                "description": "Return Pasien Data",
+                "operationId": "get-pasien",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "meta": {
+                                        "code": 200,
+                                        "status": "success",
+                                        "message": "Data Pasien Berhasil diambil!"
+                                    },
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "name": "Andi Suartika",
+                                            "email": "andisuartika@gmail.com",
+                                            "tgl_lahir": "2000-04-17",
+                                            "alamat": "Sangket"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Made Sedana",
+                                            "email": "madesedaba@gmail.com",
+                                            "tgl_lahir": "1988-02-12",
+                                            "alamat": "Singaraja"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/get-history": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get Data History API",
+                "description": "Return History Data",
+                "operationId": "get-history",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "meta": {
+                                        "code": 200,
+                                        "status": "success",
+                                        "message": "Riwayat Pemeriksaan berhasil diambil"
+                                    },
+                                    "data": [
+                                        {
+                                            "tanggal": "2023-10-23",
+                                            "nama": "Boy",
+                                            "jenis_kelamin": "Laki-laki",
+                                            "umur": 40,
+                                            "tgl_lahir": "1983-10-15",
+                                            "alamat": "singaraja",
+                                            "keluhan": "Flu",
+                                            "tekanan_darah": "110/120",
+                                            "nadi": "45",
+                                            "rr": "14",
+                                            "suhu": "37",
+                                            "fisik": "Flu disertai dengan batuk berdahak",
+                                            "diagnosis": "flu dan batuk",
+                                            "tata_laksana": "obat flu batuk 2x1",
+                                            "tarif": "100000.00",
+                                            "rujuk": 0
+                                        },
+                                        {
+                                            "tanggal": "2023-10-23",
+                                            "nama": "Boy",
+                                            "jenis_kelamin": "Laki-laki",
+                                            "umur": 40,
+                                            "tgl_lahir": "1983-10-15",
+                                            "alamat": "singaraja",
+                                            "keluhan": "Flu",
+                                            "tekanan_darah": "110/120",
+                                            "nadi": "45",
+                                            "rr": "14",
+                                            "suhu": "37",
+                                            "fisik": "Flu disertai dengan batuk berdahak",
+                                            "diagnosis": "flu dan batuk",
+                                            "tata_laksana": "obat flu batuk 2x1",
+                                            "tarif": "100000.00",
+                                            "rujuk": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    }
+}

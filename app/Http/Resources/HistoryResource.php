@@ -30,6 +30,8 @@ class HistoryResource extends JsonResource
             "tanggal" => $this->tanggal,
             "nama" => $pasien->nama,
             "umur" => $umur,
+            "jenis_kelamin" => $pasien->jenis_kelamin,
+            "tgl_lahir" => $pasien->tgl_lahir,
             "alamat" => $pasien->alamat,
             "keluhan" => $this->keluhan,
             "tekanan_darah" => $this->tekanan_darah,
