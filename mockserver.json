@@ -1,0 +1,40 @@
+{
+    "message": "success",
+    "data": [
+    {
+        "id": 1,
+        "name" : "Rahasia Jago Ngoding",
+        "isbn" : "9786230923203",
+        "penerbit" : "Informatika Publish",
+        "tahun" : 2023
+    },
+    {
+        "id": 2,
+        "name" : "Logika Informatika",
+        "isbn" : "9786230922213",
+        "penerbit" : "Informatika Publish",
+        "tahun" : 2022
+    },
+    {
+        "id": 3,
+        "name" : "Belajar HMTL Dasar",
+        "isbn" : "9786230926753",
+        "penerbit" : "Informatika Publish",
+        "tahun" : 2021
+    },
+    {
+        "id": 4,
+        "name" : "Pemrograman Mobile",
+        "isbn" : "9786230968973",
+        "penerbit" : "Informatika Publish",
+        "tahun" : 2023
+    },
+    {
+        "id": 5,
+        "name" : "Belajar Fluter Dart",
+        "isbn" : "9786230957992",
+        "penerbit" : "Informatika Publish",
+        "tahun" : 2022
+    }
+    ]
+}

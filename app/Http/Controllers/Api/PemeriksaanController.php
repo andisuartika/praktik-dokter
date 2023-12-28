@@ -90,6 +90,7 @@ class PemeriksaanController extends Controller
      */
     public function storePasien(Request $request)
     {
+        DB::beginTransaction();
         try {
             $pasien = Pasien::create([
                 ...$request->validate([
@@ -99,11 +100,12 @@ class PemeriksaanController extends Controller
                     'alamat' => 'required',
                 ]),
             ]);
-
+            DB::commit();
             return ResponseFormatter::success([
                 new PasienResource($pasien),
             ], 'Pasien Berhasil ditambahkan!');
         } catch (Exception $error) {
+            DB::rollBack();
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
                 'error' => $error
@@ -314,7 +316,7 @@ class PemeriksaanController extends Controller
 
             // Jika dirujuk, Create Rujuk.
             if ($periksa->rujuk === 1) {
-                $rujuk = Rujuk::creat([
+                $rujuk = Rujuk::create([
                     'periksa_id' => $periksa->id,
                     'pasien_id' => $request->pasien_id,
                     'tanggal' => now(),
